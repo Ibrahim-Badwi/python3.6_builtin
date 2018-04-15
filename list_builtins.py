@@ -1,20 +1,18 @@
-"""This code will print all Built_in python function (sorted by alphabet)""" 
-x="""abs()	dict()	help()	min()	setattr()
-all()	dir()	hex()	next()	slice()
-any()	divmod()	id()	object()	sorted()
-ascii()	enumerate()	input()	oct()	staticmethod()
-bin()	eval()	int()	open()	str()
-bool()	exec()	isinstance()	ord()	sum()
-bytearray()	filter()	issubclass()	pow()	super()
-bytes()	float()	iter()	print()	tuple()
-callable()	format()	len()	property()	type()
-chr()	frozenset()	list()	range()	vars()
-classmethod()	getattr()	locals()	repr()	zip()
-compile()	globals()	map()	reversed()	__import__()
-complex()	hasattr()	max()	round()	 
-delattr()	hash()	memoryview()	set()	 """
-split_x=x.split()
-z=[]
-z=sorted(split_x)
-for i in z:
-	print i
+"""This code will print all Built_in python function (sorted by alphabet)"""
+import os,sys
+
+list_of_functions=[]
+for item in dir(__builtins__):
+        try:
+                obj=str(type(eval(item)))
+                if obj.find("builtin_function_or_method"):
+                        if not item[0].isupper()and item[0]!= '_':
+                                list_of_functions.append(item)
+        except:
+                pass
+
+print("Python {}, has {} builtin function.\n".format(sys.version.split(' ')[0],len(list_of_functions)))
+i=1
+for function in list_of_functions:
+      print("{}: {} ".format(i,function))
+      i+=1
